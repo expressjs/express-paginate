@@ -20,30 +20,22 @@ npm install -S express-paginate
 ## API
 
 ```js
-var Paginate = require('express-paginate')
-var paginate = new Paginate(10, 50)
+var paginate = require('express-paginate')
 ```
-
 
 ### paginate
 
-This creates a new instance of `express-paginate` to be used with all routes or specific route(s).
+This creates a new instance of `express-paginate`.
+
+
+### paginate.middleware(limit, maxLimit)
+
+This middleware validates and supplies default values to `req.query.limit`, `req.query.page`, `res.locals.paginate`, `res.locals.hasPreviousPages`, and `res.locals.hasNextPages`.
 
 #### Arguments
 
 * `limit` a Number to limit results returned per page (defaults to `10`)
 * `maxLimit` a Number to restrict the number of results returned to per page (defaults to `50`) &ndash; through this, users will not be able to override this limit (e.g. they can't pass `?limit=10000` and crash your server)
-
-
-### paginate.middleware(req, res, next)
-
-This middleware validates and supplies default values to `req.query.limit`, `req.query.page`, `res.locals.paginate`, `res.locals.hasPreviousPages`, and `res.locals.hasNextPages`.
-
-### Arguments
-
-* `req` (**required**) &ndash; the request object returned from Express middleware invocation
-* `res` (**required**) &ndash; the response object returned from Express middleware invocation
-* `next` (**required**) &ndash; the next object returned from Express middleware invocation
 
 
 ### paginate.href(req)
