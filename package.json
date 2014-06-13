@@ -1,6 +1,6 @@
 {
   "name": "express-paginate",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Node.js pagination middleware and view helpers",
   "main": "./index.js",
   "scripts": {

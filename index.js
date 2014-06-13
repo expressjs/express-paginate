@@ -17,7 +17,7 @@ exports.href = function paginate(req) {
   return function(prev) {
     var query = _.clone(req.query)
     prev = (typeof prev === 'boolean') ? prev : false
-    query.page = prev ? query.page-- : query.page++
+    query.page = prev ? query.page-= 1 : query.page += 1
     query.page = (query.page < 1) ? 1 : query.page
     return req.path + '?' + querystring.stringify(query)
   }
