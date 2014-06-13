@@ -153,17 +153,16 @@ include _paginate
 if (paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
   .navigation.well-sm#pagination
     ul.pager
-      if previous
+      if paginate.hasPreviousPages
         li.previous
           a(href=paginate.href(true)).prev
             i.fa.fa-arrow-circle-left
             |  Previous
-      if next
+      if paginate.hasNextPages(pageCount)
         li.next
           a(href=paginate.href()).next
             | Next&nbsp;
             i.fa.fa-arrow-circle-right
-
 ```
 
 
