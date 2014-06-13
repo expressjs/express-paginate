@@ -150,7 +150,7 @@ include _paginate
 
 //- This examples makes use of Bootstrap 3.x pagination classes
 
-if (paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
+if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
   .navigation.well-sm#pagination
     ul.pager
       if paginate.hasPreviousPages
