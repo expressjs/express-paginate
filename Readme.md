@@ -165,4 +165,22 @@ if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
             i.fa.fa-arrow-circle-right
 ```
 
+## Running Tests
 
+  To run the test suite, first invoke the following command within the repo, installing the development dependencies:
+
+```bash
+$ npm install
+```
+
+  Then run the tests:
+
+```bash
+$ npm test
+```
+
+  To get the coverage:
+
+```bash
+$ npm run coverage
+```

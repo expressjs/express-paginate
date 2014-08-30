@@ -4,7 +4,9 @@
   "description": "Node.js pagination middleware and view helpers",
   "main": "./index.js",
   "scripts": {
-    "prepublish": "npm prune"
+    "prepublish": "npm prune",
+    "test": "node_modules/mocha/bin/_mocha --reporter spec test/**/*-test.js",
+    "coverage": "istanbul cover node_modules/mocha/bin/_mocha"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,9 @@
     "lodash": "^2.4.1",
     "querystring": "^0.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "istanbul": "^0.3.0",
+    "mocha": "^1.21.4"
+  }
 }
