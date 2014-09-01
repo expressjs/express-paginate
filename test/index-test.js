@@ -1,7 +1,4 @@
 var paginate = require('../index');
-var chai = require('chai');
-
-chai.should();
 
 describe('paginate', function(){
 
