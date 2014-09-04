@@ -9,6 +9,7 @@
 // * Source: <https://github.com/niftylettuce/express-paginate>
 
 var querystring = require('querystring')
+var url = require('url');
 var _ = require('lodash')
 
 exports = module.exports
@@ -19,7 +20,7 @@ exports.href = function paginate(req) {
     prev = (typeof prev === 'boolean') ? prev : false
     query.page = prev ? query.page-= 1 : query.page += 1
     query.page = (query.page < 1) ? 1 : query.page
-    return req.originalUrl + '?' + querystring.stringify(query)
+    return url.parse(req.originalUrl).pathname + '?' + querystring.stringify(query)
   }
 }
 
