@@ -3,9 +3,6 @@
   "version": "0.0.2",
   "description": "Node.js pagination middleware and view helpers",
   "main": "./index.js",
-  "scripts": {
-    "prepublish": "npm prune"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/niftylettuce/express-paginate.git"
@@ -20,5 +17,15 @@
     "lodash": "^2.4.1",
     "querystring": "^0.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "istanbul": "^0.3.0",
+    "mocha": "^1.21.4"
+  },
+  "scripts": {
+    "prepublish": "npm prune",
+    "test": "mocha --reporter spec --bail --check-leaks --require test/support/should test/",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks --require test/support/should  test/",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks --require test/support/should test/"
+  }
 }

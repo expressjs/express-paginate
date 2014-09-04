@@ -164,5 +164,3 @@ if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
             | Next&nbsp;
             i.fa.fa-arrow-circle-right
 ```
-
-
