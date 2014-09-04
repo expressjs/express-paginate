@@ -13,13 +13,11 @@ To be used in combination with database pagination plugins such as [mongoose-pag
 **This module was created namely for use with [Eskimo](http://eskimo.io)**
 
 
-
 ## Install
 
 ```bash
 npm install -S express-paginate
 ```
-
 
 
 ## API
@@ -86,7 +84,6 @@ When executed with `req`, it will return a function that accepts two required ar
 #### Returned function arguments when invoked with `req`
 
 * `pageCount` (**required**) &ndash; a Number representing the total number of pages for the given query executed on the page
-
 
 
 ## Example
@@ -169,6 +166,7 @@ if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
             | Next&nbsp;
             i.fa.fa-arrow-circle-right
 ```
+
 
 ## License
 
