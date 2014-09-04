@@ -19,7 +19,7 @@ exports.href = function paginate(req) {
     prev = (typeof prev === 'boolean') ? prev : false
     query.page = prev ? query.page-= 1 : query.page += 1
     query.page = (query.page < 1) ? 1 : query.page
-    return req.path + '?' + querystring.stringify(query)
+    return req.originalUrl + '?' + querystring.stringify(query)
   }
 }
 
