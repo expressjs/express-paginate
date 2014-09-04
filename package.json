@@ -1,6 +1,6 @@
 {
   "name": "express-paginate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Node.js pagination middleware and view helpers",
   "main": "./index.js",
   "repository": {
@@ -8,6 +8,16 @@
     "url": "git://github.com/niftylettuce/express-paginate.git"
   },
   "author": "Nick Baugh <niftylettuce@gmail.com>",
+  "contributors": [
+    {
+      "name": "Esco Obong",
+      "email": "menzoic@gmail.com"
+    },
+    {
+      "name": "Matheus Marchini",
+      "email": "matheusdot@gmail.com"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/niftylettuce/express-paginate/issues"
   },

@@ -1,5 +1,10 @@
 
-# Express Paginate
+# express-paginate
+
+[![NPM Version][npm-image]][npm-url]
+[![NPM Downloads][downloads-image]][downloads-url]
+[![Build Status][travis-image]][travis-url]
+[![Test Coverage][coveralls-image]][coveralls-url]
 
 Node.js pagination middleware and view helpers.
 
@@ -164,3 +169,16 @@ if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
             | Next&nbsp;
             i.fa.fa-arrow-circle-right
 ```
+
+## License
+
+[MIT](LICENSE)
+
+[npm-image]: https://img.shields.io/npm/v/express-paginate.svg?style=flat
+[npm-url]: https://npmjs.org/package/express-paginate
+[travis-image]: https://img.shields.io/travis/expressjs/express-paginate.svg?style=flat
+[travis-url]: https://travis-ci.org/expressjs/express-paginate
+[coveralls-image]: https://img.shields.io/coveralls/expressjs/express-paginate.svg?style=flat
+[coveralls-url]: https://coveralls.io/r/expressjs/express-paginate?branch=master
+[downloads-image]: http://img.shields.io/npm/dm/express-paginate.svg?style=flat
+[downloads-url]: https://npmjs.org/package/express-paginate

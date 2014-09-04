@@ -9,7 +9,7 @@
 // * Source: <https://github.com/niftylettuce/express-paginate>
 
 var querystring = require('querystring')
-var url = require('url');
+var url = require('url')
 var _ = require('lodash')
 
 exports = module.exports
