@@ -34,7 +34,7 @@ describe('paginate', function(){
         }).should.throw(/\> 0/);
       });
 
-    })
+    });
 
   });
 
