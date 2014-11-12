@@ -16,12 +16,28 @@ var util = require('util');
 exports = module.exports;
 
 exports.href = function href(req) {
-  return function(prev) {
+
+  return function(prev, params) {
+
     var query = _.clone(req.query);
-    prev = (typeof prev === 'boolean') ? prev : false;
-    query.page = prev ? query.page-= 1 : query.page += 1;
-    query.page = (query.page < 1) ? 1 : query.page;
+
+    if (typeof prev === 'object') {
+      params = prev;
+      prev = false;
+    } else {
+      prev = (typeof prev === 'boolean') ? prev : false;
+      query.page = prev ? query.page-= 1 : query.page += 1;
+      query.page = (query.page < 1) ? 1 : query.page;
+    }
+
+    // allow overriding querystring params
+    // (useful for sorting and filtering)
+    // another alias for `_.assign` is `_.extend`
+    if (_.isObject(params))
+      query = _.assign(query, params);
+
     return url.parse(req.originalUrl).pathname + '?' + querystring.stringify(query);
+
   };
 };
 

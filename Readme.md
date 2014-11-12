@@ -47,11 +47,17 @@ When you use the `paginate` middleware, it injects a view helper function called
 
 By default, the view helper `paginate.href` is already executed with the inherited `req` variable, therefore it becomes a function capable of returning a String when executed.
 
-When executed with `req`, it will return a function with one argument called `prev`.
+When executed with `req`, it will return a function with two optional arguments, `prev` (Boolean) and `params` (String).
 
-This argument `prev` is a Boolean and is completely optional (defaults to `false`).
+The argument `prev` is a Boolean and is completely optional (defaults to `false`).
+
+The argument `params` is an Object and is completely optional.
 
 Pass `true` as the value for `prev` when you want to create a `<button>` or `<a>` that points to the previous page (e.g. it would generate a URL such as the one in the `href` attribute of `<a href="/users?page=1&limit=10">Prev</a>` if `req.query.page` is `2`).
+
+Pass an object for the value of `params` when you want to override querystring parameters &ndash; such as for filtering and sorting (e.g. it would generate a URL such as the one in the `href` attribute of `<a href="/users?page=1&limit=10&sort=name">Sort By Name</a>` if `params` is equal to `{ sort: 'name' }`.
+
+Note that if you pass only one argument with a type of Object, then it will generate a `href` with the current page and use the first argument as the value for `params`.  This is useful if you only want to do something like change the filter or sort querystring param, but not increase or decrease the page number.
 
 [See the example below for an example of how implementation looks](#example).
 
@@ -62,7 +68,7 @@ Pass `true` as the value for `prev` when you want to create a `<button>` or `<a>
 #### Returned function arguments when invoked with `req`
 
 * `prev` (optional) &ndash; a Boolean to determine whether or not to increment the hyperlink returned by `1` (e.g. for "Next" page links)
-
+* `params` (optional) &ndash; an Object of querystring parameters that will override the current querystring in `req.query` (note that this will also override the `page` querystring value if `page` is present as a key in the `params` object) (e.g. if you want to make a link that allows the user to change the current querystring to sort by name, you would have `params` equal to `{ sort: 'name' }`)
 
 ### paginate.hasPreviousPages
 
@@ -139,6 +145,17 @@ app.listen(3000)
 //- users.jade
 
 h1 Users
+
+//- this will simply generate a link to sort by name
+//- note how we only have to pass the querystring param
+//- that we want to modify here, not the entire querystring
+a(href=paginate.href({ sort: 'name' })) Sort by name
+
+//- this assumes you have `?age=1` or `?age=-1` in the querystring
+//- so this will basically negate the value and give you
+//- the opposite sorting order (desc with -1 or asc with 1)
+a(href=paginate.href({ sort: req.query.age === '1' ? -1 : 1 })) Sort by age
+
 ul
   each user in users
     li= user.email
