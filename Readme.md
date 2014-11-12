@@ -23,7 +23,7 @@ npm install -S express-paginate
 ## API
 
 ```js
-var paginate = require('express-paginate')
+var paginate = require('express-paginate');
 ```
 
 ### paginate
@@ -98,11 +98,11 @@ When executed with `req`, it will return a function that accepts two required ar
 
 // # app.js
 
-var express = require('express')
-var paginate = require('express-paginate')
+var express = require('express');
+var paginate = require('express-paginate');
 
 // keep this before all routes that will use pagination
-app.use(paginate.middleware(10, 50))
+app.use(paginate.middleware(10, 50));
 
 app.get('/users', function(req, res, next) {
 
@@ -112,7 +112,7 @@ app.get('/users', function(req, res, next) {
   // to the Users model via `User.plugin(require('mongoose-paginate'))`
   Users.paginate({}, req.query.page, req.query.limit, function(err, pageCount, users, itemCount) {
 
-    if (err) return next(err)
+    if (err) return next(err);
 
     res.format({
       html: function() {
@@ -120,7 +120,7 @@ app.get('/users', function(req, res, next) {
           users: users,
           pageCount: pageCount,
           itemCount: itemCount
-        })
+        });
       },
       json: function() {
         // inspired by Stripe's API response for list objects
@@ -128,16 +128,16 @@ app.get('/users', function(req, res, next) {
           object: 'list',
           has_more: paginate.hasNextPages(req)(pageCount),
           data: users
-        })
+        });
       }
-    })
+    });
 
-  })
+  });
 
-})
+});
 
-var app = express()
-app.listen(3000)
+var app = express();
+app.listen(3000);
 ```
 
 ```jade
