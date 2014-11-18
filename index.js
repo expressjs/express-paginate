@@ -80,7 +80,7 @@ exports.middleware = function middleware(limit, maxLimit) {
 
     res.locals.paginate = {};
     res.locals.paginate.page = req.query.page;
-    res.locals.paginate.limit = req.query.page;
+    res.locals.paginate.limit = req.query.limit;
     res.locals.paginate.href = exports.href(req);
     res.locals.paginate.hasPreviousPages = req.query.page > 1;
     res.locals.paginate.hasNextPages = exports.hasNextPages(req);
