@@ -53,9 +53,9 @@ exports.middleware = function middleware(limit, maxLimit) {
 
   var that = this;
 
-  that.limit = (typeof limit === 'number') ? parseInt(limit, 10) : 10;
+  that.limit = (typeof limit === 'number') ? parseInt(limit, 10) || 10 : 10;
 
-  that.maxLimit = (typeof maxLimit === 'number') ? parseInt(maxLimit, 10) : 50;
+  that.maxLimit = (typeof maxLimit === 'number') ? parseInt(maxLimit, 10) || 10 : 50;
 
   if (that.limit < 1)
     throw new Error('express-paginate: `limit` cannot be less than 1');
@@ -65,9 +65,9 @@ exports.middleware = function middleware(limit, maxLimit) {
 
   return function _middleware(req, res, next) {
 
-    req.query.page = (typeof req.query.page === 'string') ? parseInt(req.query.page, 10) : 1;
+    req.query.page = (typeof req.query.page === 'string') ? parseInt(req.query.page, 10) || 1 : 1;
 
-    req.query.limit = (typeof req.query.limit === 'string') ? parseInt(req.query.limit, 10) : that.limit;
+    req.query.limit = (typeof req.query.limit === 'string') ? parseInt(req.query.limit, 10) || that.limit : that.limit;
 
     if (req.query.limit > that.maxLimit)
       req.query.limit = that.maxLimit;
