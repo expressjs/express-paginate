@@ -100,6 +100,7 @@ When executed with `req`, it will return a function that accepts two required ar
 
 var express = require('express');
 var paginate = require('express-paginate');
+var app = express();
 
 // keep this before all routes that will use pagination
 app.use(paginate.middleware(10, 50));
@@ -136,7 +137,6 @@ app.get('/users', function(req, res, next) {
 
 });
 
-var app = express();
 app.listen(3000);
 ```
 
