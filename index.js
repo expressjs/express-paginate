@@ -44,7 +44,7 @@ exports.href = function href(req) {
 exports.hasNextPages = function hasNextPages(req) {
   return function(pageCount) {
     if (typeof pageCount !== 'number' || pageCount < 0)
-      throw new Error('express-paginate: `pageCount` is not a number > 0');
+      throw new Error('express-paginate: `pageCount` is not a number >= 0');
     return req.query.page < pageCount;
   };
 };
