@@ -82,8 +82,8 @@ describe('paginate', function() {
 
       it('should throw an error when pageCount is less than zero', function() {
         (function(){
-          paginate.hasNextPages(this.req)('');
-        }).should.throw(/\> 0/);
+          paginate.hasNextPages(this.req)(-1);
+        }).should.throw(/\>= 0/);
       });
 
     });
