@@ -1,6 +1,6 @@
 {
   "name": "express-paginate",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Node.js pagination middleware and view helpers",
   "main": "./index.js",
   "repository": {
@@ -19,6 +19,10 @@
     },
     {
       "name": "Carlo Bernaschina"
+    },
+    {
+      "name": "Alberto Gimeno",
+      "email": "gimenete@gimenete.net"
     }
   ],
   "bugs": {
