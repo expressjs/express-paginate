@@ -36,7 +36,7 @@ exports.href = function href(req) {
     if (_.isObject(params))
       query = _.assign(query, params);
 
-    return url.parse(req.originalUrl).pathname + '?' + querystring.stringify(query);
+    return (req.baseUrl || '')+url.parse(req.originalUrl).pathname + '?' + querystring.stringify(query);
 
   };
 };

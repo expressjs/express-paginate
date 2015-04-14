@@ -50,6 +50,24 @@ describe('paginate', function() {
 
   });
 
+  describe('.href(req) with mounted router', function() {
+
+    beforeEach(function() {
+      this.req = {
+        originalUrl: 'http://niftylettuce.com/',
+        query: {
+          page: 3
+        },
+        baseUrl: '/admin'
+      };
+    });
+
+    it('should return the next page when invoked with no arguments', function() {
+      paginate.href(this.req)().should.equal(util.format('%s%s?page=%d', this.req.baseUrl, url.parse(this.req.originalUrl).pathname, this.req.query.page + 1));
+    });
+
+  });
+
   describe('.hasNextPages(req)', function() {
 
     beforeEach(function() {
