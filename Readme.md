@@ -5,12 +5,10 @@
 [![NPM Downloads][downloads-image]][downloads-url]
 [![Build Status][travis-image]][travis-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
+[![MIT License][license-image]][license-url]
+[![Slack][slack-image]][slack-url]
 
-Node.js pagination middleware and view helpers.
-
-To be used in combination with database pagination plugins such as [mongoose-paginate](https://github.com/edwardhotchkiss/mongoose-paginate).
-
-**This module was created namely for use with [Eskimo](http://eskimo.io)**
+> Node.js pagination middleware and view helpers. To be used in combination with database pagination plugins such as [mongoose-paginate](https://github.com/edwardhotchkiss/mongoose-paginate).  This module was created namely for use with [Eskimo](http://eskimo.io).
 
 
 ## Install
@@ -111,7 +109,7 @@ app.get('/users', function(req, res, next) {
   // as `var Users = db.model('Users')` if you are using `mongoose`
   // and that you've added the Mongoose plugin `mongoose-paginate`
   // to the Users model via `User.plugin(require('mongoose-paginate'))`
-  Users.paginate({}, req.query.page, req.query.limit, function(err, pageCount, users, itemCount) {
+  Users.paginate({}, { page: req.query.page, limit: req.query.limit }, function(err, users, pageCount, itemCount) {
 
     if (err) return next(err);
 
@@ -187,7 +185,8 @@ if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
 
 ## License
 
-[MIT](LICENSE)
+[MIT][license-url]
+
 
 [npm-image]: https://img.shields.io/npm/v/express-paginate.svg?style=flat
 [npm-url]: https://npmjs.org/package/express-paginate
@@ -197,3 +196,7 @@ if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
 [coveralls-url]: https://coveralls.io/r/expressjs/express-paginate?branch=master
 [downloads-image]: http://img.shields.io/npm/dm/express-paginate.svg?style=flat
 [downloads-url]: https://npmjs.org/package/express-paginate
+[license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
+[license-url]: LICENSE
+[slack-url]: http://slack.eskimo.io/
+[slack-image]: http://slack.eskimo.io/badge.svg
