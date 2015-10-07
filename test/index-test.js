@@ -2,6 +2,8 @@
 var paginate = require('../index');
 var util = require('util');
 var url = require('url');
+var reqres = require('reqres');
+var async = require('async');
 
 describe('paginate', function() {
 
@@ -87,6 +89,65 @@ describe('paginate', function() {
       });
 
     });
+
+  });
+
+  describe('.middleware(limit, maxLimit)', function() {
+
+      describe('should be a pure function with successive calls not mutating', function() {
+
+          var firstMiddleware, secondMiddleware;
+
+          beforeEach(function() {
+              firstMiddleware = paginate.middleware(10, 20);
+              secondMiddleware = paginate.middleware(30, 40);
+          });
+
+          it('limit in previous calls', function(done) {
+              async.parallel(
+                  [
+                      function(callback) {
+                          var req = reqres.req();
+                          firstMiddleware(req, reqres.res(), function(err) {
+                              req.query.limit.should.equal(10);
+                              callback(null, null);
+                          })
+                      },
+                      function(callback) {
+                          var req = reqres.req();
+                          secondMiddleware(req, reqres.res(), function(err) {
+                              req.query.limit.should.equal(30);
+                              callback(null, null);
+                          })
+                      }
+                  ],
+                  done
+              );
+          });
+
+          it('maxLimit in previous calls', function(done) {
+              async.parallel(
+                  [
+                      function(callback) {
+                          var req = reqres.req({query: {limit: '100'}});
+                          firstMiddleware(req, reqres.res(), function(err) {
+                              req.query.limit.should.equal(20);
+                              callback(null, null);
+                          })
+                      },
+                      function(callback) {
+                          var req = reqres.req({query: {limit: '100'}});
+                          secondMiddleware(req, reqres.res(), function(err) {
+                              req.query.limit.should.equal(40);
+                              callback(null, null);
+                          })
+                      }
+                  ],
+                  done
+              );
+          });
+
+      });
 
   });
 
