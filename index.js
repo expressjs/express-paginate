@@ -51,26 +51,24 @@ exports.hasNextPages = function hasNextPages(req) {
 
 exports.middleware = function middleware(limit, maxLimit) {
 
-  var that = this;
+  var _limit = (typeof limit === 'number') ? parseInt(limit, 10) || 10 : 10;
 
-  that.limit = (typeof limit === 'number') ? parseInt(limit, 10) || 10 : 10;
+  var _maxLimit = (typeof maxLimit === 'number') ? parseInt(maxLimit, 10) || 10 : 50;
 
-  that.maxLimit = (typeof maxLimit === 'number') ? parseInt(maxLimit, 10) || 10 : 50;
-
-  if (that.limit < 1)
+  if (_limit < 1)
     throw new Error('express-paginate: `limit` cannot be less than 1');
 
-  if (that.maxLimit < 1)
+  if (_maxLimit < 1)
     throw new Error('express-paginate: `maxLimit` cannot be less than 1');
 
   return function _middleware(req, res, next) {
 
     req.query.page = (typeof req.query.page === 'string') ? parseInt(req.query.page, 10) || 1 : 1;
 
-    req.query.limit = (typeof req.query.limit === 'string') ? parseInt(req.query.limit, 10) || that.limit : that.limit;
+    req.query.limit = (typeof req.query.limit === 'string') ? parseInt(req.query.limit, 10) || _limit : _limit;
 
-    if (req.query.limit > that.maxLimit)
-      req.query.limit = that.maxLimit;
+    if (req.query.limit > _maxLimit)
+      req.query.limit = _maxLimit;
 
     if (req.query.page < 1)
       req.query.page = 1;
