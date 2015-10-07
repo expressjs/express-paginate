@@ -1,6 +1,6 @@
 {
   "name": "express-paginate",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Node.js pagination middleware and view helpers",
   "main": "./index.js",
   "repository": {
@@ -31,9 +31,11 @@
     "querystring": "^0.2.0"
   },
   "devDependencies": {
+    "async": "^1.4.2",
     "chai": "^1.9.1",
     "istanbul": "^0.3.0",
-    "mocha": "^1.21.4"
+    "mocha": "^1.21.4",
+    "reqres": "^1.2.2"
   },
   "scripts": {
     "prepublish": "npm prune",
