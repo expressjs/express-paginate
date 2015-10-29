@@ -151,4 +151,64 @@ describe('paginate', function() {
 
   });
 
+  describe('.getArrayPages(limit, pageCount, currentPaget)', function() {
+
+    var pages;
+    var limit = 4,
+      fakeMaxCount = 10;
+
+    beforeEach(function() {
+      this.req = {
+        originalUrl: 'http://niftylettuce.com/',
+        query: {
+          page: 3
+        }
+      };
+
+     pages = paginate.getArrayPages(this.req)(limit, fakeMaxCount, this.req.query.page);
+    });
+
+    it('should return arrays of pages', function() {
+      pages.should.be.a('array');
+    });
+
+    it('it should contain correct page numbers and page urls', function() {
+      pages.forEach(function(p, i) {
+        // index from 1
+        var idx = i + 1;
+        p.number.should.equal(idx);
+        p.url.should.contain('page='+(idx));
+      })
+    })
+
+    it('it should contain correct page numbers and page urls', function() {
+      pages.forEach(function(p, i) {
+        // index from 1
+        var idx = i + 1;
+        p.number.should.equal(idx);
+        p.url.should.contain('page='+(idx));
+      })
+    })
+
+    it('check validations', function() {
+
+      var contextReq = this.req;
+
+      // negative limit
+      (function(){
+        paginate.getArrayPages(contextReq)(-1, fakeMaxCount, contextReq.query.page);
+      }).should.throw(/\>= 0/);
+
+      // pageCount is string
+      (function(){
+        paginate.getArrayPages(contextReq)(limit, '', contextReq.query.page);
+      }).should.throw(/\>= 0/);
+
+      // currentPage is object
+      (function(){
+        paginate.getArrayPages(contextReq)(limit, fakeMaxCount, {});
+      }).should.throw(/\>= 0/);
+    })
+  })
+
 });

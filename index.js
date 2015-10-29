@@ -49,6 +49,40 @@ exports.hasNextPages = function hasNextPages(req) {
   };
 };
 
+exports.getArrayPages = function(req) {
+  return function(limit, pageCount, currentPage) {
+    var maxPage = pageCount;
+
+    // limit default is 3
+    limit = limit || 3;
+
+    if (typeof limit !== 'number' || limit < 0)
+      throw new Error('express-paginate: `limit` is not a number >= 0');
+
+    if (typeof pageCount !== 'number' || pageCount < 0)
+      throw new Error('express-paginate: `pageCount` is not a number >= 0');
+
+    if (typeof currentPage !== 'number' || currentPage < 0)
+      throw new Error('express-paginate: `currentPage` is not a number >= 0');
+
+    if (limit > 0) {
+      var start = currentPage - limit > 0 ? currentPage - limit : 1;
+      var end = currentPage + limit > maxPage ?
+        maxPage : currentPage + limit;
+      var pages = [];
+      for (var i = start; i <= end; i++) {
+        pages.push({
+          number: i,
+          url: exports.href(req)()
+          .replace('page=' + (currentPage + 1), 'page=' + i)
+        });
+      }
+
+      return pages;
+    }
+  }
+}
+
 exports.middleware = function middleware(limit, maxLimit) {
 
   var _limit = (typeof limit === 'number') ? parseInt(limit, 10) || 10 : 10;
@@ -82,6 +116,7 @@ exports.middleware = function middleware(limit, maxLimit) {
     res.locals.paginate.href = exports.href(req);
     res.locals.paginate.hasPreviousPages = req.query.page > 1;
     res.locals.paginate.hasNextPages = exports.hasNextPages(req);
+    res.locals.paginate.getArrayPages = exports.getArrayPages(req);
 
     next();
 
