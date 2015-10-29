@@ -89,6 +89,21 @@ When executed with `req`, it will return a function that accepts two required ar
 
 * `pageCount` (**required**) &ndash; a Number representing the total number of pages for the given query executed on the page
 
+### paginate.getArrayPages(req)
+
+Get all the page urls with limit.  
+![petronas contest 2015-10-29 12-35-52](https://cloud.githubusercontent.com/assets/3213579/10810997/a5b0b190-7e39-11e5-9cca-fb00a2142640.png)
+
+#### Arguments
+
+* `req` (**required**) &ndash; the request object returned from Express middleware invocation
+
+#### Returned function arguments when invoked with `req`
+
+* `limit` (**optional**) &ndash; Default: 3, a Number representing the total number of pages for the given query executed on the page.
+* `pageCount` (**required**) &ndash; a Number representing the total number of pages for the given query executed on the page.
+* `currentPage` (**required**) &ndash; a Number representing the current page.
+
 
 ## Example
 
@@ -118,7 +133,8 @@ app.get('/users', function(req, res, next) {
         res.render('users', {
           users: users,
           pageCount: pageCount,
-          itemCount: itemCount
+          itemCount: itemCount,
+          pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
         });
       },
       json: function() {
@@ -175,6 +191,9 @@ if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
           a(href=paginate.href(true)).prev
             i.fa.fa-arrow-circle-left
             |  Previous
+      if pages
+        each page in pages
+          a.btn.btn-default(href=page.url)= page.number
       if paginate.hasNextPages(pageCount)
         li.next
           a(href=paginate.href()).next
