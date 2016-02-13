@@ -103,6 +103,8 @@ exports.middleware = function middleware(limit, maxLimit) {
 
     req.query.limit = (typeof req.query.limit === 'string') ? parseInt(req.query.limit, 10) || _limit : _limit;
 
+    req.skip = req.offset = (req.query.page * req.query.limit) - req.query.limit;
+
     if (req.query.limit > _maxLimit)
       req.query.limit = _maxLimit;
 

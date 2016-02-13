@@ -31,7 +31,7 @@ This creates a new instance of `express-paginate`.
 
 ### paginate.middleware(limit, maxLimit)
 
-This middleware validates and supplies default values to `req.query.limit`, `req.query.page`, `res.locals.paginate`, `res.locals.hasPreviousPages`, and `res.locals.hasNextPages`.
+This middleware validates and supplies default values to `req.skip` (an alias of `req.offset`, which can be used to skip or offset a number of records for pagination, e.g. with Mongoose you would do `Model.find().skip(req.skip)`), `req.query.limit`, `req.query.page`, `res.locals.paginate`, `res.locals.hasPreviousPages`, and `res.locals.hasNextPages`.
 
 #### Arguments
 
@@ -91,7 +91,7 @@ When executed with `req`, it will return a function that accepts two required ar
 
 ### paginate.getArrayPages(req)
 
-Get all the page urls with limit.  
+Get all the page urls with limit.
 ![petronas contest 2015-10-29 12-35-52](https://cloud.githubusercontent.com/assets/3213579/10810997/a5b0b190-7e39-11e5-9cca-fb00a2142640.png)
 
 #### Arguments
@@ -120,6 +120,12 @@ app.use(paginate.middleware(10, 50));
 
 app.get('/users', function(req, res, next) {
 
+  //
+  // TODO: The documentation has changed for `mongoose-paginate`
+  // as the original author unpublished and then published it (not sure why)
+  // but the API has changed, so this example is no longer relevant or accurate
+  // see <https://github.com/edwardhotchkiss/mongoose-paginate>
+  //
   // This example assumes you've previously defined `Users`
   // as `var Users = db.model('Users')` if you are using `mongoose`
   // and that you've added the Mongoose plugin `mongoose-paginate`
