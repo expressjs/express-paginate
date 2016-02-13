@@ -27,7 +27,9 @@
   "license": "MIT",
   "homepage": "https://github.com/niftylettuce/express-paginate",
   "dependencies": {
-    "lodash": "^2.4.1",
+    "lodash.assign": "^3.2.0",
+    "lodash.clone": "^3.0.3",
+    "lodash.isobject": "^3.0.2",
     "querystring": "^0.2.0"
   },
   "devDependencies": {

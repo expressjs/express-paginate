@@ -10,7 +10,9 @@
 
 var querystring = require('querystring');
 var url = require('url');
-var _ = require('lodash');
+var assign = require('lodash.assign');
+var clone = require('lodash.clone');
+var isObject = require('lodash.isobject');
 var util = require('util');
 
 exports = module.exports;
@@ -19,7 +21,7 @@ exports.href = function href(req) {
 
   return function(prev, params) {
 
-    var query = _.clone(req.query);
+    var query = clone(req.query);
 
     if (typeof prev === 'object') {
       params = prev;
@@ -33,8 +35,8 @@ exports.href = function href(req) {
     // allow overriding querystring params
     // (useful for sorting and filtering)
     // another alias for `_.assign` is `_.extend`
-    if (_.isObject(params))
-      query = _.assign(query, params);
+    if (isObject(params))
+      query = assign(query, params);
 
     return url.parse(req.originalUrl).pathname + '?' + querystring.stringify(query);
 
