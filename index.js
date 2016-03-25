@@ -105,8 +105,8 @@ exports.middleware = function middleware(limit, maxLimit) {
     if (req.query.page < 1)
       req.query.page = 1;
 
-    if (req.query.limit < 1)
-      req.query.limit = 1;
+    if (req.query.limit < 0)
+      req.query.limit = 0;
 
     res.locals.paginate = {};
     res.locals.paginate.page = req.query.page;
