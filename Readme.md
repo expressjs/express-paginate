@@ -10,6 +10,7 @@
 
 > Node.js pagination middleware and view helpers. To be used in combination with database pagination plugins such as [mongoose-paginate](https://github.com/edwardhotchkiss/mongoose-paginate).  This module was created namely for use with [Eskimo](http://eskimo.io).
 
+**v0.2.0+**: As of `v0.2.0`, we now allow you to pass `?limit=0` to get infinite (all) results.  This may impose security or performance issues for your application, so we suggest you to write a quick `if (req.query.limit > X) req.query.limit = X` middleware in your app, or use rate limiting middleware.
 
 ## Install
 
