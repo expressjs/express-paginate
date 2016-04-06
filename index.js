@@ -87,21 +87,15 @@ exports.getArrayPages = function(req) {
 
 exports.middleware = function middleware(limit, maxLimit) {
 
-  var _limit = (typeof limit === 'number') ? parseInt(limit, 10) || 10 : 10;
+  var _limit = (typeof limit === 'number') ? parseInt(limit, 10) : 10;
 
-  var _maxLimit = (typeof maxLimit === 'number') ? parseInt(maxLimit, 10) || 10 : 50;
-
-  if (_limit < 1)
-    throw new Error('express-paginate: `limit` cannot be less than 1');
-
-  if (_maxLimit < 1)
-    throw new Error('express-paginate: `maxLimit` cannot be less than 1');
+  var _maxLimit = (typeof maxLimit === 'number') ? parseInt(maxLimit, 10) : 50;
 
   return function _middleware(req, res, next) {
 
     req.query.page = (typeof req.query.page === 'string') ? parseInt(req.query.page, 10) || 1 : 1;
 
-    req.query.limit = (typeof req.query.limit === 'string') ? parseInt(req.query.limit, 10) || _limit : _limit;
+    req.query.limit = (typeof req.query.limit === 'string') ? parseInt(req.query.limit, 10) : _limit;
 
     req.skip = req.offset = (req.query.page * req.query.limit) - req.query.limit;
 
@@ -111,8 +105,8 @@ exports.middleware = function middleware(limit, maxLimit) {
     if (req.query.page < 1)
       req.query.page = 1;
 
-    if (req.query.limit < 1)
-      req.query.limit = 1;
+    if (req.query.limit < 0)
+      req.query.limit = 0;
 
     res.locals.paginate = {};
     res.locals.paginate.page = req.query.page;
