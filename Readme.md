@@ -18,6 +18,7 @@ app.all(function(req, res, next) {
   if (req.query.limit <= 10) req.query.limit = 10;
   next();
 });
+```
 
 
 ## Install
