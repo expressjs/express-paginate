@@ -12,7 +12,7 @@
 
 **v0.2.0+**: As of `v0.2.0`, we now allow you to pass `?limit=0` to get infinite (all) results.  This may impose security or performance issues for your application, so we suggest you to write a quick middleware fix such as the one below, or use rate limiting middleware to prevent abuse.
 
-```bash
+```js
 app.all(function(req, res, next) {
   // set default or minimum is 10 (as it was prior to v0.2.0)
   if (req.query.limit <= 10) req.query.limit = 10;
