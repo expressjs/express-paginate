@@ -154,7 +154,7 @@ describe('paginate', function() {
   describe('.getArrayPages(limit, pageCount, currentPaget)', function() {
 
     var pages;
-    var limit = 4,
+    var limit = 5,
       fakeMaxCount = 10;
 
     beforeEach(function() {
