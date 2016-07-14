@@ -68,9 +68,9 @@ exports.getArrayPages = function(req) {
       throw new Error('express-paginate: `currentPage` is not a number >= 0');
 
     if (limit > 0) {
-      var start = currentPage - limit > 0 ? currentPage - limit : 1;
-      var end = currentPage + limit > maxPage ?
-        maxPage : currentPage + limit;
+      var end = Math.min(Math.max(currentPage + Math.floor(limit / 2), limit), pageCount);
+      var start = (currentPage < (limit - 1)) ? 1 : (end - limit) + 1;
+			
       var pages = [];
       for (var i = start; i <= end; i++) {
         pages.push({
