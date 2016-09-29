@@ -8,7 +8,7 @@
 [![MIT License][license-image]][license-url]
 [![Slack][slack-image]][slack-url]
 
-> Node.js pagination middleware and view helpers. To be used in combination with database pagination plugins such as [mongoose-paginate](https://github.com/edwardhotchkiss/mongoose-paginate).  This module was created namely for use with [Eskimo](http://eskimo.io).
+> Node.js pagination middleware and view helpers. To be used in combination with database pagination plugins such as [mongoose-paginate](https://github.com/edwardhotchkiss/mongoose-paginate).
 
 **Looking for a Koa version?**  Try using <https://github.com/koajs/ctx-paginate>, which is forked directly from this package!
 
@@ -235,5 +235,5 @@ if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
 [downloads-url]: https://npmjs.org/package/express-paginate
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-url]: LICENSE
-[slack-url]: http://slack.eskimo.io/
-[slack-image]: http://slack.eskimo.io/badge.svg
+[slack-url]: http://slack.crocodilejs.com/
+[slack-image]: http://slack.crocodilejs.com/badge.svg
