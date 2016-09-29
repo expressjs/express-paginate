@@ -95,9 +95,7 @@ exports.middleware = function middleware(limit, maxLimit) {
 
     req.query.page = (typeof req.query.page === 'string') ? parseInt(req.query.page, 10) || 1 : 1;
 
-    req.query.limit = (typeof req.query.limit === 'string') ? parseInt(req.query.limit, 10) : _limit;
-
-    req.skip = req.offset = (req.query.page * req.query.limit) - req.query.limit;
+    req.query.limit = (typeof req.query.limit === 'string') ? parseInt(req.query.limit, 10) || 0 : _limit;
 
     if (req.query.limit > _maxLimit)
       req.query.limit = _maxLimit;
@@ -107,6 +105,8 @@ exports.middleware = function middleware(limit, maxLimit) {
 
     if (req.query.limit < 0)
       req.query.limit = 0;
+
+    req.skip = req.offset = (req.query.page * req.query.limit) - req.query.limit;
 
     res.locals.paginate = {};
     res.locals.paginate.page = req.query.page;
