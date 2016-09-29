@@ -10,6 +10,8 @@
 
 > Node.js pagination middleware and view helpers. To be used in combination with database pagination plugins such as [mongoose-paginate](https://github.com/edwardhotchkiss/mongoose-paginate).  This module was created namely for use with [Eskimo](http://eskimo.io).
 
+**Looking for a Koa version?**  Try using <https://github.com/koajs/ctx-paginate>, which is forked directly from this package!
+
 **v0.2.0+**: As of `v0.2.0`, we now allow you to pass `?limit=0` to get infinite (all) results.  This may impose security or performance issues for your application, so we suggest you to write a quick middleware fix such as the one below, or use rate limiting middleware to prevent abuse.
 
 ```js
