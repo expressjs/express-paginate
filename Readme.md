@@ -133,34 +133,29 @@ app.use(paginate.middleware(10, 50));
 app.get('/users', function(req, res, next) {
 
   //
-  // TODO: The documentation has changed for `mongoose-paginate`
-  // as the original author unpublished and then published it (not sure why)
-  // but the API has changed, so this example is no longer relevant or accurate
-  // see <https://github.com/edwardhotchkiss/mongoose-paginate>
-  //
   // This example assumes you've previously defined `Users`
   // as `var Users = db.model('Users')` if you are using `mongoose`
   // and that you've added the Mongoose plugin `mongoose-paginate`
   // to the Users model via `User.plugin(require('mongoose-paginate'))`
-  Users.paginate({}, { page: req.query.page, limit: req.query.limit }, function(err, users, pageCount, itemCount) {
+  Users.paginate({}, { page: req.query.page, limit: req.query.limit }, function(err, users) {
 
     if (err) return next(err);
 
     res.format({
       html: function() {
         res.render('users', {
-          users: users,
-          pageCount: pageCount,
-          itemCount: itemCount,
-          pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
+          users: users.docs,
+          pageCount: users.pages,
+          itemCount: users.limit,
+          pages: paginate.getArrayPages(req)(3, users.pages, req.query.page)
         });
       },
       json: function() {
         // inspired by Stripe's API response for list objects
         res.json({
           object: 'list',
-          has_more: paginate.hasNextPages(req)(pageCount),
-          data: users
+          has_more: paginate.hasNextPages(req)(users.pages),
+          data: users.docs
         });
       }
     });
