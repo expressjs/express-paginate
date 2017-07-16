@@ -174,7 +174,7 @@ app.listen(3000);
 
 ```jade
 
-//- users.jade
+//- users.pug
 
 h1 Users
 
@@ -197,7 +197,7 @@ include _paginate
 
 ```jade
 
-//- _paginate.jade
+//- _paginate.pug
 
 //- This examples makes use of Bootstrap 3.x pagination classes
 
