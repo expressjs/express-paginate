@@ -167,7 +167,7 @@ app.get('/users', function(req, res, next) {
 app.listen(3000);
 ```
 
-```jade
+```pug
 
 //- users.pug
 
@@ -190,7 +190,7 @@ ul
 include _paginate
 ```
 
-```jade
+```pug
 
 //- _paginate.pug
 
