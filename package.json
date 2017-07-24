@@ -27,16 +27,16 @@
   "license": "MIT",
   "homepage": "https://github.com/niftylettuce/express-paginate",
   "dependencies": {
-    "lodash.assign": "^3.2.0",
-    "lodash.clone": "^3.0.3",
+    "lodash.assign": "^4.2.0",
+    "lodash.clone": "^4.5.0",
     "lodash.isobject": "^3.0.2",
     "querystring": "^0.2.0"
   },
   "devDependencies": {
-    "async": "^1.4.2",
-    "chai": "^1.9.1",
-    "istanbul": "^0.3.0",
-    "mocha": "^1.21.4",
+    "async": "^2.5.0",
+    "chai": "^4.1.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.4.2",
     "reqres": "^1.2.2"
   },
   "scripts": {
