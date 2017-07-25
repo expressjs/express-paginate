@@ -250,7 +250,8 @@ describe('paginate', function () {
     })
 
     it('it should contain correct page numbers and page urls', function () {
-      pages.forEach(function (p, i) {
+      //Limit is more than total pages
+      paginate.getArrayPages(this.req)(4,3,3).forEach(function (p, i) {
         // index from 1
         var idx = i + 1;
         p.number.should.equal(idx);

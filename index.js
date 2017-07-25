@@ -69,7 +69,7 @@ exports.getArrayPages = function(req) {
 
     if (limit > 0) {
       var end = Math.min(Math.max(currentPage + Math.floor(limit / 2), limit), pageCount);
-      var start = (currentPage < (limit - 1)) ? 1 : (end - limit) + 1;
+      var start = Math.max(1, (currentPage < (limit - 1)) ? 1 : (end - limit) + 1);
 			
       var pages = [];
       for (var i = start; i <= end; i++) {
