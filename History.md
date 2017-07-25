@@ -1,4 +1,11 @@
 
+[0.3.0](https://github.com/niftylettuce/express-paginate/compare/0.2.2...0.3.0) / 2017-07-25
+===================
+- Fix getArrayPages when limit is more than no of pages ([#38](https://github.com/expressjs/express-paginate/pull/38))
+- Drop support for NodeJS 0.10.0 and 0.12.0. Minimum requirement now is NodeJS v4.
+- Updates to documentation
+
+
 [0.2.2](https://github.com/niftylettuce/express-paginate/compare/0.2.1...0.2.2) / 2016-09-29
 ===================
 Fix bugs related to limit parameters ([#24](https://github.com/expressjs/express-paginate/pull/24)):
