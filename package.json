@@ -30,7 +30,7 @@
     "lodash.assign": "^4.2.0",
     "lodash.clone": "^4.5.0",
     "lodash.isobject": "^3.0.2",
-    "querystring": "^0.2.0"
+    "qs": "^6.5.1"
   },
   "devDependencies": {
     "async": "^2.5.0",
