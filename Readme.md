@@ -33,7 +33,7 @@ npm install -S express-paginate
 ## API
 
 ```js
-var paginate = require('express-paginate');
+const paginate = require('express-paginate');
 ```
 
 ### paginate
@@ -123,9 +123,9 @@ Get all the page urls with limit.
 
 // # app.js
 
-var express = require('express');
-var paginate = require('express-paginate');
-var app = express();
+const express = require('express');
+const paginate = require('express-paginate');
+const app = express();
 
 // keep this before all routes that will use pagination
 app.use(paginate.middleware(10, 50));
