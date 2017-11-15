@@ -8,7 +8,7 @@
 [![MIT License][license-image]][license-url]
 [![Slack][slack-image]][slack-url]
 
-> Node.js pagination middleware and view helpers. To be used in combination with database pagination plugins such as [mongoose-paginate](https://github.com/edwardhotchkiss/mongoose-paginate).
+> Node.js pagination middleware and view helpers.
 
 **Looking for a Koa version?**  Try using <https://github.com/koajs/ctx-paginate>, which is forked directly from this package!
 
@@ -130,37 +130,39 @@ var app = express();
 // keep this before all routes that will use pagination
 app.use(paginate.middleware(10, 50));
 
-app.get('/users', function(req, res, next) {
+app.get('/users', async (req, res, next) => {
 
-  //
   // This example assumes you've previously defined `Users`
-  // as `var Users = db.model('Users')` if you are using `mongoose`
-  // and that you've added the Mongoose plugin `mongoose-paginate`
-  // to the Users model via `User.plugin(require('mongoose-paginate'))`
-  Users.paginate({}, { page: req.query.page, limit: req.query.limit }, function(err, users) {
+  // as `const Users = db.model('Users')` if you are using `mongoose`
+  // and that you are using Node v7.6.0+ which has async/await support
+  try {
 
-    if (err) return next(err);
+    const [ results, itemCount ] = await Promise.all([
+      Users.find({}).limit(req.query.limit).skip(req.skip).lean().exec(),
+      Users.count({})
+    ]);
 
-    res.format({
-      html: function() {
-        res.render('users', {
-          users: users.docs,
-          pageCount: users.pages,
-          itemCount: users.limit,
-          pages: paginate.getArrayPages(req)(3, users.pages, req.query.page)
-        });
-      },
-      json: function() {
-        // inspired by Stripe's API response for list objects
-        res.json({
-          object: 'list',
-          has_more: paginate.hasNextPages(req)(users.pages),
-          data: users.docs
-        });
-      }
-    });
+    const pageCount = Math.ceil(itemCount / req.query.limit);
 
-  });
+    if (req.accepts('json')) {
+      // inspired by Stripe's API response for list objects
+      res.json({
+        object: 'list',
+        has_more: paginate.hasNextPages(req)(pageCount),
+        data: results
+      });
+    } else {
+      res.render('users', {
+        users,
+        pageCount,
+        itemCount,
+        pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
+      });
+    }
+
+  } catch (err) {
+    next(err);
+  }
 
 });
 
