@@ -153,7 +153,7 @@ app.get('/users', async (req, res, next) => {
       });
     } else {
       res.render('users', {
-        users,
+        users: results,
         pageCount,
         itemCount,
         pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
