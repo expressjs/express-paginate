@@ -168,11 +168,10 @@ app.get('/users', async (req, res, next) => {
 
 app.listen(3000);
 
-// end of mongoose example
-
+```
 
 ## Example 2 with Sequelize ORM 
-
+```js
 
 // # app.js
 
