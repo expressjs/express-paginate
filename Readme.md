@@ -117,7 +117,7 @@ Get all the page urls with limit.
 * `currentPage` (**required**) &ndash; a Number representing the current page.
 
 
-## Example
+## Example with mongoose ODM (see example 2 for Sequelize ORM)
 
 ```js
 
@@ -163,6 +163,44 @@ app.get('/users', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+
+});
+
+app.listen(3000);
+
+```
+
+## Example 2 with Sequelize ORM
+```js
+
+// # app.js
+
+const express = require('express');
+const paginate = require('express-paginate');
+const app = express();
+
+// keep this before all routes that will use pagination
+app.use(paginate.middleware(10, 50));
+
+app.get('/users', async (req, res, next) => {
+
+  // This example assumes you've previously defined `Users`
+  // as `const Users = sequelize.define('Users',{})` if you are using `Sequelize`
+  // and that you are using Node v7.6.0+ which has async/await support
+
+  router.get("/all_users", (req, res, next) => {
+    db.User.findAndCountAll({limit: req.query.limit, offset: req.skip})
+      .then(results => {
+        const itemCount = results.count;
+        const pageCount = Math.ceil(results.count / req.query.limit);
+        res.render('users/all_users', {
+          users: results.rows,
+          pageCount,
+          itemCount,
+          pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
+        });
+    }).catch(err => next(err))
+  });
 
 });
 
