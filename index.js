@@ -8,7 +8,7 @@
 // * Author: [@niftylettuce](https://twitter.com/#!/niftylettuce)
 // * Source: <https://github.com/niftylettuce/express-paginate>
 
-var querystring = require('querystring');
+var qs = require('qs');
 var url = require('url');
 var assign = require('lodash.assign');
 var clone = require('lodash.clone');
@@ -39,7 +39,7 @@ exports.href = function href(req) {
     if (isObject(params))
       query = assign(query, params);
 
-    return url.parse(req.originalUrl).pathname + '?' + querystring.stringify(query);
+    return url.parse(req.originalUrl).pathname + '?' + qs.stringify(query);
 
   };
 };
@@ -72,7 +72,7 @@ exports.getArrayPages = function(req) {
     if (limit > 0) {
       var end = Math.min(Math.max(currentPage + Math.floor(limit / 2), limit), pageCount);
       var start = Math.max(1, (currentPage < (limit - 1)) ? 1 : (end - limit) + 1);
-			
+
       var pages = [];
       for (var i = start; i <= end; i++) {
         pages.push({

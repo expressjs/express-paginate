@@ -30,19 +30,18 @@
     "lodash.assign": "^4.2.0",
     "lodash.clone": "^4.5.0",
     "lodash.isobject": "^3.0.2",
-    "querystring": "^0.2.0"
+    "qs": "^6.5.1"
   },
   "devDependencies": {
     "async": "^2.5.0",
     "chai": "^4.1.0",
     "istanbul": "^0.4.5",
-    "mocha": "^3.4.2",
-    "reqres": "^1.2.2"
+    "mocha": "^5.1.1",
+    "reqres": "^2.1.0"
   },
   "scripts": {
-    "prepublish": "npm prune",
-    "test": "mocha --reporter spec --bail --check-leaks --require test/support/should test/",
-    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks --require test/support/should  test/",
-    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks --require test/support/should test/"
+    "test": "node_modules/.bin/mocha --reporter spec --bail --check-leaks --require test/support/should test/",
+    "test-cov": "istanbul cover node_modules/.bin/mocha -- --reporter dot --check-leaks --require test/support/should  test/",
+    "test-travis": "istanbul cover node_modules/.bin/mocha --report lcovonly -- --reporter spec --check-leaks --require test/support/should test/"
   }
 }
