@@ -28,7 +28,7 @@ exports.href = function href(req) {
       prev = false;
     } else {
       prev = (typeof prev === 'boolean') ? prev : false;
-      query.page = Number.parseInt(query.page, 10);
+      query.page = parseInt(query.page, 10);
       query.page = prev ? query.page-= 1 : query.page += 1;
       query.page = (query.page < 1) ? 1 : query.page;
     }
@@ -65,7 +65,7 @@ exports.getArrayPages = function(req) {
     if (typeof pageCount !== 'number' || pageCount < 0)
       throw new Error('express-paginate: `pageCount` is not a number >= 0');
 
-    currentPage = Number.parseInt(currentPage, 10);
+    currentPage = parseInt(currentPage, 10);
     if (Number.isNaN(currentPage) || currentPage < 0)
       throw new Error('express-paginate: `currentPage` is not a number >= 0');
 
