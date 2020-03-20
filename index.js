@@ -30,7 +30,7 @@ exports.href = function href(req) {
       prev = (typeof prev === 'boolean') ? prev : false;
       query.page = parseInt(query.page, 10);
       query.page = prev ? query.page-= 1 : query.page += 1;
-      query.page = (query.page < 1) ? 1 : query.page;
+      query.page = (query.page < 1) ? 0 : query.page;
     }
 
     // allow overriding querystring params
@@ -95,7 +95,7 @@ exports.middleware = function middleware(limit, maxLimit) {
 
   return function _middleware(req, res, next) {
 
-    req.query.page = (typeof req.query.page === 'string') ? parseInt(req.query.page, 10) || 1 : 1;
+    req.query.page = (typeof req.query.page === 'string') ? parseInt(req.query.page, 10) || 0 : 0;
 
     req.query.limit = (typeof req.query.limit === 'string') ? parseInt(req.query.limit, 10) || 0 : _limit;
 
@@ -103,7 +103,7 @@ exports.middleware = function middleware(limit, maxLimit) {
       req.query.limit = _maxLimit;
 
     if (req.query.page < 1)
-      req.query.page = 1;
+      req.query.page = 0;
 
     if (req.query.limit < 0)
       req.query.limit = 0;

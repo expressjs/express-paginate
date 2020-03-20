@@ -147,13 +147,13 @@ describe('paginate', function () {
         );
       });
 
-      it('limit, skip and offset should be zero, page should be one', function (done) {
+      it('limit, skip and offset should be zero, page should be zero', function (done) {
         async.parallel(
           [
             function (callback) {
               var req = reqres.req({ query: { page: '0', limit: '0' } });
               firstMiddleware(req, reqres.res(), function (err) {
-                req.query.page.should.equal(1);
+                req.query.page.should.equal(0);
                 req.query.limit.should.equal(0);
                 req.skip.should.equal(0);
                 req.offset.should.equal(0);
@@ -163,7 +163,7 @@ describe('paginate', function () {
             function (callback) {
               var req = reqres.req({ query: { page: '0', limit: '0' } });
               secondMiddleware(req, reqres.res(), function (err) {
-                req.query.page.should.equal(1);
+                req.query.page.should.equal(0);
                 req.query.limit.should.equal(0);
                 req.skip.should.equal(0);
                 req.offset.should.equal(0);
@@ -173,7 +173,7 @@ describe('paginate', function () {
             function (callback) {
               var req = reqres.req({ query: { page: '-1', limit: '-1' } });
               firstMiddleware(req, reqres.res(), function (err) {
-                req.query.page.should.equal(1);
+                req.query.page.should.equal(0);
                 req.query.limit.should.equal(0);
                 req.skip.should.equal(0);
                 req.offset.should.equal(0);
@@ -183,7 +183,7 @@ describe('paginate', function () {
             function (callback) {
               var req = reqres.req({ query: { page: '-10', limit: '-10' } });
               secondMiddleware(req, reqres.res(), function (err) {
-                req.query.page.should.equal(1);
+                req.query.page.should.equal(0);
                 req.query.limit.should.equal(0);
                 req.skip.should.equal(0);
                 req.offset.should.equal(0);
@@ -194,7 +194,7 @@ describe('paginate', function () {
               var req = reqres.req({ query: { page: 'notInt', limit: 'notInt' } });
               firstMiddleware(req, reqres.res(), function (err) {
                 req.query.limit.should.equal(0);
-                req.query.page.should.equal(1);
+                req.query.page.should.equal(0);
                 req.skip.should.equal(0);
                 req.offset.should.equal(0);
                 callback(null, null);
@@ -204,7 +204,7 @@ describe('paginate', function () {
               var req = reqres.req({ query: { page: 'notInt', limit: 'notInt' } });
               secondMiddleware(req, reqres.res(), function (err) {
                 req.query.limit.should.equal(0);
-                req.query.page.should.equal(1);
+                req.query.page.should.equal(0);
                 req.skip.should.equal(0);
                 req.offset.should.equal(0);
                 callback(null, null);
