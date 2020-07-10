@@ -270,5 +270,5 @@ if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
 [downloads-url]: https://npmjs.org/package/express-paginate
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-url]: LICENSE
-[slack-url]: https://slack.crocodilejs.com/
-[slack-image]: https://slack.crocodilejs.com/badge.svg
+[slack-url]: https://join.slack.com/t/ladjs/shared_invite/zt-fqei6z11-Bq2trhwHQxVc5x~ifiZG0g/
+[slack-image]: https://img.shields.io/badge/chat-join%20slack-brightgreen
