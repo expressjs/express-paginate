@@ -5,7 +5,7 @@
   "main": "./index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/niftylettuce/express-paginate.git"
+    "url": "git://github.com/expressjs/express-paginate.git"
   },
   "author": "Nick Baugh <niftylettuce@gmail.com>",
   "contributors": [
@@ -22,10 +22,10 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/niftylettuce/express-paginate/issues"
+    "url": "https://github.com/expressjs/express-paginate/issues"
   },
   "license": "MIT",
-  "homepage": "https://github.com/niftylettuce/express-paginate",
+  "homepage": "https://github.com/expressjs/express-paginate",
   "dependencies": {
     "lodash.assign": "^4.2.0",
     "lodash.clone": "^4.5.0",
